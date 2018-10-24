@@ -23,8 +23,12 @@ export function UserReducer(state: User[] = [initialState], action: UserActions.
             }
             console.log('There is not logged in user');
             return [...state];
-        
-            default:
-            return state;
+        case UserActions.USER_CLEAR:
+            localStorage.removeItem('auth');
+            let user: User;
+            return user;
+        // tslint:disable-next-line:no-switch-case-fall-through
+        default:
+        return state;
     }
 }
