@@ -19,6 +19,10 @@ import { UserReducer } from './store/user/user.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 
+//Effects implementation
+import { EffectsModule } from '@ngrx/effects';
+import { UserEffects } from './store/user/user.effects';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +44,7 @@ import { environment } from '../environments/environment';
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
+    EffectsModule.forRoot([UserEffects])
   ],
   providers: [
     UserService
