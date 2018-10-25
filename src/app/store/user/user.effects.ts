@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import * as UserActions from './user.actions'
+import * as UserActions from './user.actions';
 import { switchMap, tap, map, concatMap } from 'rxjs/operators';
 import { UserService } from '../../services/user.service';
 import { User, Auth } from 'src/app/models/user';
@@ -15,11 +15,18 @@ export class UserEffects {
 
     @Effect({ dispatch: false })
     loadUser$: Observable<Action> = this.actions$.pipe(
-        ofType(UserActions.USER_LOAD),
-        
+        ofType(UserActions.USER_LOAD)
     );
 
-    //Login
+    @Effect({ dispatch: false})
+    userClear$: Observable<Action> = this.actions$.pipe(
+        ofType(UserActions.USER_CLEAR),
+        tap(() => {
+            localStorage.removeItem('auth');
+        })
+    );
+
+    // Login
     @Effect()
     loginUser$: Observable<Action> = this.actions$.pipe(
         ofType(UserActions.USER_LOGIN),
@@ -29,7 +36,7 @@ export class UserEffects {
                     localStorage.setItem('auth', JSON.stringify(auth));
                     return new UserActions.UserLoad();
                 })
-            )
+            );
         })
-    )
+    );
 }

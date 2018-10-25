@@ -23,6 +23,9 @@ export function UserReducer(state: User[] = [initialState], action: UserActions.
             console.log('There is not logged in user');
             return state;
 
+        case UserActions.USER_CLEAR:
+            return [];
+
         case UserActions.USER_LOGIN:
             return state;
 

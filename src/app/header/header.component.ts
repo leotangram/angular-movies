@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
   user: User;
   // @Input() user: User;
   // tslint:disable-next-line:no-output-on-prefix
-  @Output('onLogout') onLogout = new EventEmitter();
+  // @Output('onLogout') onLogout = new EventEmitter();
 
   constructor(private _store: Store<AppState>) {
 
@@ -21,7 +21,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this._store.select('user').subscribe(user => {
+      console.log(this.user);
       this.user = user;
+      
     });
   }
 

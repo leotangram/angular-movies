@@ -26,4 +26,4 @@ export class UserClear implements Action {
 }
 
 // Export actions
-export type Actions = UserLoad|UserLogin|UserSet;
+export type Actions = UserLoad|UserLogin|UserSet|UserClear;
