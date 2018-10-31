@@ -18,9 +18,10 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   /** Gets all products **/
-  get(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.apiURL + 'auth/local/register', httpOptions).pipe(
-      catchError(this.handleError<Product[]>('get'))
+  getById(id: String): Observable<Product> {
+    return this.http.get<Product[]>(this.apiURL + 'products/' + id, httpOptions).pipe(
+      tap((product: Product) => this.log(`Get movie in as w/ title=${product.name}`)),
+      catchError(this.handleError<Product>('get'))
     );
   }
 
