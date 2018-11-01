@@ -22,6 +22,8 @@ import { environment } from '../environments/environment';
 // Effects implementation
 import { EffectsModule } from '@ngrx/effects';
 import { UserEffects } from './store/user/user.effects';
+import { UserComponent } from './user/user.component';
+import { MovieComponent } from './movie/movie.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { UserEffects } from './store/user/user.effects';
     HomeComponent,
     SignupComponent,
     HeaderComponent,
-    LoginComponent
+    LoginComponent,
+    UserComponent,
+    MovieComponent
   ],
   imports: [
     BrowserModule,
