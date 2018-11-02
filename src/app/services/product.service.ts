@@ -13,13 +13,27 @@ const httpOptions = {
 })
 export class ProductService {
 
-  apiURL: string = 'https://angular-movies-backend.herokuapp.com/';
+  apiURL = 'https://angular-movies-backend.herokuapp.com/';
 
   constructor(private http: HttpClient) { }
 
-  /** Gets all products **/
+  getAllProducts() {
+    return this.http.get<Product[]>(this.apiURL + 'products').pipe(
+      tap((products: Product[]) => this.log('Get all Products')),
+      catchError(this.handleError<Product[]>('get'))
+    );
+  }
+
+  getAllCategories() {
+    return this.http.get<Product[]>(this.apiURL + 'categories').pipe(
+      tap((products: Product[]) => this.log('Get all Categories')),
+      catchError(this.handleError<Product[]>('get'))
+    );
+  }
+
+  /** Gets products by id**/
   getById(id: String): Observable<Product> {
-    return this.http.get<Product[]>(this.apiURL + 'products/' + id, httpOptions).pipe(
+    return this.http.get<Product>(this.apiURL + 'products/' + id, httpOptions).pipe(
       tap((product: Product) => this.log(`Get movie in as w/ title=${product.name}`)),
       catchError(this.handleError<Product>('get'))
     );

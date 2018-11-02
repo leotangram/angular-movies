@@ -9,3 +9,38 @@
     </section>
   </main>
 </div>
+
+<div class="container">
+  <div class="categories">
+    <h1 class="title-category">Categories</h1>
+    <div class="category" *ngFor="let category of categories">
+      <!-- <div> -->
+        <h1 class="title-category">{{category.name}}</h1>
+      <!-- </div> -->
+      <!-- <div> -->
+        <span class="bag">{{category.product.length}}</span>
+      <!-- </div> -->
+    </div>
+  </div>
+  <div class="products">
+    <div class="product" *ngFor="let product of products">
+      <div class="img">
+        <img class="cover" [src]="product.cover" alt="Foto del Producto">
+      </div>
+      <div class="product-info">
+        <div class="product-info-size">
+          <div class="product-info-header">
+            <h1 class="product-info-title">{{product.name}}</h1>
+            <h2 class="product-info-subtitle">{{product.createdAt | date: 'longDate'}}</h2>
+          </div>
+          <div class="product-info-description">
+            <p>{{product.description}}</p>
+          </div>
+        </div>
+        <div class="more-info">
+          <button class="button-info" (click)="onGoToMovie(product._id)">More Info</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

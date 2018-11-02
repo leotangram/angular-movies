@@ -14,7 +14,7 @@ export class MovieComponent implements OnInit {
 
   movie$: Observable<Product>;
 
-  constructor(private productService: ProductService, private route: ActivatedRoute, private router: Router,) { }
+  constructor(private productService: ProductService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.movie$ = this.route.paramMap.pipe(
